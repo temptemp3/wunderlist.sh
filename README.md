@@ -1,5 +1,7 @@
 # wunderlist.sh
 
+wunderlist cli in bash
+
 ## install
 
 ```
