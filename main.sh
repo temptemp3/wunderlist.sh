@@ -1,7 +1,10 @@
 #!/bin/bash
 ## wunderlist.sh
 ## - wunderlist cl
-## version 0.0.1 - initial
+## version 0.0.2 - error handling
+##################################################
+## includes
+. $( dirname ${0} )/error.sh true  # show errors
 ##################################################
 ## aliases
 shopt -s expand_aliases
