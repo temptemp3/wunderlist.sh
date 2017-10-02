@@ -5,7 +5,7 @@ wunderlist cli in bash
 ## install
 
 ```
-alias wl='path-to-wunderlist.sh/main'
+alias wl='path-to-wunderlist.sh/main.sh'
 ```
 
 ## installation
