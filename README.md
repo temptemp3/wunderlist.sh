@@ -13,6 +13,17 @@ alias wl='path-to-wunderlist.sh/main.sh'
 ### env
 
 ```
+WL_CID=XXXXXXXXXXXXXXX
+WL_AT=YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+```
+
+### wl-config.sh
+
+place wl-config.sh file in wunderlist.sh directory
+
+#### sample
+
+```
 export WL_CID=XXXXXXXXXXXXXXX
 export WL_AT=YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
 ```
