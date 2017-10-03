@@ -1,7 +1,7 @@
 #!/bin/bash
 ## error
 ## =standalone=
-## version: 2.0.6c - error line
+## version: 2.0.7 - error message
 ## see sh2/error
 ##################################################
 { # error handling
@@ -80,7 +80,7 @@ EOF
 error ${1-false}
 shopt -s expand_aliases
 alias error-line='
- error ${message} ${FUNCNAME} ${LINENO}
+ error ${error_message} ${FUNCNAME} ${LINENO}
  false
 '
 ##################################################
