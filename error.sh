@@ -59,11 +59,11 @@ EOF
  if-message() { _() { test ! "${1}" || { echo "\"${1}\"" ; } ; } ; _ "${error_message}" ; }
  if-error-show() {
    test "${error_show}" = "false" || {
-    cat >> error-log << EOF
+   cat >> $( dirname ${0} )/error-log << EOF
 $( date ) ${0} $( if-message )
 error in $( if-function-name ) $( if-line-number )
 EOF
-    echo $( tail -n 2 error-log ) 1>&2 # stdout to stderr
+    echo $( tail -n 2 $( dirname ${0})/error-log ) 1>&2 # stdout to stderr
    }
   }
   test ! "${function_name}" = "" && {

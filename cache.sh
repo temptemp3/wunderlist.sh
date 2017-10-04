@@ -35,7 +35,7 @@ _() {
  echo Created $( date )
 }
 cache \
-"cache-test" \
+"$( dirname ${0} )/cache-test" \
 "_" \
 &>/dev/null
 ##################################################

@@ -7,6 +7,9 @@
 . $( dirname ${0} )/error.sh true # error handling, show errors
 . $( dirname ${0} )/cache.sh # caching
 . $( dirname ${0} )/sanitize.sh # sanitization
+. $( dirname ${0} )/range.sh # range
+. $( dirname ${0} )/functions.sh # functions
+. $( dirname ${0} )/cecho.sh # color echo
 ##################################################
 ## aliases
 shopt -s expand_aliases
@@ -18,6 +21,10 @@ alias commands='
  } || {
   ${FUNCNAME}-${_command} ${args}
  }
+'
+#-------------------------------------------------
+alias setup-list='
+not yet implemented
 '
 ##################################################
 wl-get-lists() {
@@ -55,12 +62,40 @@ wl-curl() {
  "_"
 }
 #-------------------------------------------------
+get-list-field() { { local candidate_field ; candidate_field="${1}" ; }
+ test "${list}"
+ echo "${list}" | jq ".[\"${candidate_field}\"]"
+}
+#-------------------------------------------------
 wl-test() {
- echo testing ... 1>&2
- for i in {1..999999}
+
+ cecho yellow ${FUNCNAME}
+
+ cecho green testing ...
+
+ #cecho press any key to continue
+ #read
+
+ cecho green start dumping lists ...
+ lists=$( wl get lists )
+ for list_index in $( range 0 $( decr $( echo "${lists}" | jq '.|length' ) ) )
  do
-  wl get lists
+  cecho yellow list ${list_index}
+  list=$( echo "${lists}" | jq ".[${list_index}]" )
+  list_keys=$( echo "${list}" | jq ".|keys|join(\" \")" | sed -e 's/"//g' )
+  cecho green start dumping list keys ...
+  for list_key in ${list_keys}
+  do
+   echo ${list_key}: $( get-list-field ${list_key} )
+  done 
+  cecho green stop dumping list keys
+  echo
+  # get tasks for a list
+  # https://developer.wunderlist.com/documentation/endpoints/task
+  # id: 320564034
  done
+ cecho green stop dumping list
+
 }
 #-------------------------------------------------
 initialized=
